@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Specimen Not Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --oscorp-dark: #020610;
+            --oscorp-panel: #091221;
+            --oscorp-blue: #00d4ff;
+            --oscorp-cyan: #00ffcc;
+            --text-main: #e2e8f0;
+            --text-muted: #64748b;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--oscorp-dark);
+            color: var(--text-main);
+            font-family: 'Rajdhani', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 90%;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- Header Section --- */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            padding-bottom: 2rem;
+        }
+
+        .error-code {
+            font-family: 'Fira Code', monospace;
+            font-size: 7rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--oscorp-cyan);
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+            letter-spacing: 5px;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            color: var(--oscorp-blue);
+            font-weight: 600;
+        }
+
+        /* --- Alert Box --- */
+        .alert-box {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-left: 4px solid var(--oscorp-blue);
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            margin-bottom: 2.5rem;
+        }
+
+        .alert-box h3 {
+            color: var(--oscorp-cyan);
+            margin-top: 0;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .alert-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* --- Custom Vector Art / Logos --- */
+        .lab-stage {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .lab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90px;
+        }
+
+        .icon-container {
+            width: 75px;
+            height: 75px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Styling logo agar bersinar bak hologram */
+        svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 5px rgba(0, 212, 255, 0.5));
+            transition: all 0.3s ease;
+        }
+
+        .lab-item:hover svg {
+            filter: drop-shadow(0 0 15px rgba(0, 255, 204, 0.9));
+            transform: scale(1.1);
+        }
+
+        .lab-label {
+            font-size: 0.85rem;
+            color: var(--oscorp-blue);
+            font-family: 'Fira Code', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* --- Cards Section --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--oscorp-panel);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-style: solid;
+            border-width: 0 20px 20px 0;
+            border-color: transparent var(--oscorp-dark) transparent transparent;
+        }
+
+        .card:hover {
+            border-color: var(--oscorp-blue);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .card h4 {
+            margin: 0 0 1rem 0;
+            font-size: 1.4rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .highlight {
+            color: var(--oscorp-cyan);
+            font-weight: 600;
+        }
+
+        /* --- Footer Status --- */
+        .system-halted {
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid rgba(255, 0, 85, 0.3);
+            color: #ff0055;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            background: rgba(255, 0, 85, 0.05);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: pulse-red 2s infinite alternate;
+        }
+
+        @keyframes pulse-red {
+            from { box-shadow: 0 0 5px rgba(255, 0, 85, 0.1); }
+            to { box-shadow: 0 0 15px rgba(255, 0, 85, 0.3); }
+        }
+
+        @media (max-width: 768px) {
+            .lab-stage { gap: 2rem; }
+            .error-code { font-size: 5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="error-code">404</h1>
+            <h2 class="error-title">Specimen Not Found</h2>
+        </div>
+
+        <div class="alert-box">
+            <h3>>> Data Extraction Failed</h3>
+            <p>The sequencing protocol could not verify this URL. The data you are looking for may have mutated, migrated, or is simply not in our database yet.</p>
+        </div>
+
+        <div class="lab-stage">
+            
+            <div class="lab-item">
+                <div class="icon-container">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="10" fill="none" stroke="#00ffcc" stroke-width="4"/>
+                        <circle cx="50" cy="50" r="4" fill="#00ffcc"/>
+                        <ellipse cx="50" cy="50" rx="40" ry="12" fill="none" stroke="#00d4ff" stroke-width="2" transform="rotate(30 50 50)"/>
+                        <ellipse cx="50" cy="50" rx="40" ry="12" fill="none" stroke="#00d4ff" stroke-width="2" transform="rotate(-30 50 50)"/>
+                        <ellipse cx="50" cy="50" rx="40" ry="12" fill="none" stroke="#00d4ff" stroke-width="2" transform="rotate(90 50 50)"/>
+                    </svg>
+                </div>
+                <div class="lab-label">Scientist</div>
+            </div>
+
+            <div class="lab-item">
+                <div class="icon-container">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 20 40 L 50 20 L 80 40 L 80 70 L 50 90 L 20 70 Z" fill="rgba(0, 212, 255, 0.05)" stroke="#00d4ff" stroke-width="3"/>
+                        <polygon points="50,65 45,55 55,55" fill="none" stroke="#00ffcc" stroke-width="2"/>
+                        <circle cx="35" cy="45" r="8" fill="none" stroke="#00ffcc" stroke-width="2"/>
+                        <circle cx="65" cy="45" r="8" fill="none" stroke="#00ffcc" stroke-width="2"/>
+                        <circle cx="35" cy="45" r="3" fill="#00ffcc"/>
+                        <circle cx="65" cy="45" r="3" fill="#00ffcc"/>
+                        <line x1="20" y1="40" x2="50" y2="65" stroke="#00d4ff" stroke-width="2"/>
+                        <line x1="80" y1="40" x2="50" y2="65" stroke="#00d4ff" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="lab-label">Aves</div>
+            </div>
+
+            <div class="lab-item">
+                <div class="icon-container">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="10,50 40,50 40,20 60,20" fill="none" stroke="#00d4ff" stroke-width="3"/>
+                        <polyline points="60,20 60,10 80,10" fill="none" stroke="#00ffcc" stroke-width="3"/>
+                        <polyline points="60,20 60,30 80,30" fill="none" stroke="#00ffcc" stroke-width="3"/>
+                        <polyline points="40,50 40,80 60,80" fill="none" stroke="#00d4ff" stroke-width="3"/>
+                        <polyline points="60,80 60,70 80,70" fill="none" stroke="#00ffcc" stroke-width="3"/>
+                        <polyline points="60,80 60,90 80,90" fill="none" stroke="#00ffcc" stroke-width="3"/>
+                        <circle cx="85" cy="10" r="5" fill="#00ffcc"/>
+                        <circle cx="85" cy="30" r="5" fill="#00ffcc"/>
+                        <circle cx="85" cy="70" r="5" fill="#00ffcc"/>
+                        <circle cx="85" cy="90" r="5" fill="#00ffcc"/>
+                    </svg>
+                </div>
+                <div class="lab-label">Phylogeny</div>
+            </div>
+
+            <div class="lab-item">
+                <div class="icon-container">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="35" y="10" width="30" height="15" rx="3" fill="rgba(0, 255, 204, 0.1)" stroke="#00ffcc" stroke-width="3"/>
+                        <line x1="50" y1="25" x2="50" y2="40" stroke="#00d4ff" stroke-width="3"/>
+                        <line x1="20" y1="40" x2="80" y2="40" stroke="#00d4ff" stroke-width="3"/>
+                        <line x1="20" y1="40" x2="20" y2="50" stroke="#00d4ff" stroke-width="3"/>
+                        <line x1="80" y1="40" x2="80" y2="50" stroke="#00d4ff" stroke-width="3"/>
+                        <rect x="5" y="50" width="30" height="15" rx="3" fill="none" stroke="#00d4ff" stroke-width="3"/>
+                        <rect x="65" y="50" width="30" height="15" rx="3" fill="none" stroke="#00d4ff" stroke-width="3"/>
+                        <line x1="20" y1="65" x2="20" y2="75" stroke="#00d4ff" stroke-width="3"/>
+                        <rect x="5" y="75" width="30" height="15" rx="3" fill="none" stroke="#00ffcc" stroke-width="3" stroke-dasharray="4,2"/>
+                    </svg>
+                </div>
+                <div class="lab-label">Taxonomy</div>
+            </div>
+
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <h4>Research & Publications</h4>
+                <p>Stay tuned! We are currently cooking up some <span class="highlight">fresh, awesome scientific papers</span>. The lab is working hard, and new releases are coming soon.</p>
+            </div>
+            
+            <div class="card">
+                <h4>The Final Boss: Ph.D.</h4>
+                <p>Currently leveling up and preparing to conquer the Ph.D. journey. It's time to gear up and <span class="highlight">defeat the final boss</span> of the education game.</p>
+            </div>
+        </div>
+
+        <div class="system-halted">
+            [ SYSTEM HALTED: RESTART PCR (RETURN TO HOMEPAGE) ]
+        </div>
+    </div>
+
+</body>
+</html>
